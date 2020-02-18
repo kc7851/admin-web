@@ -2,6 +2,7 @@ package com.skc.adminweb.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class User {
 
@@ -24,12 +26,12 @@ public class User {
 
     private String phoneNumber;
 
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
-    private String createBy;
+    private String createdBy;
 
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 
-    private String updateBy;
+    private String updatedBy;
 
 }
