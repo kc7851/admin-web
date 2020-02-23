@@ -1,16 +1,16 @@
 package com.skc.adminweb.repository;
 
+import com.skc.adminweb.model.entity.Item;
 import com.skc.adminweb.model.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,14 +33,22 @@ public class UserRepositoryTests {
     }
 
     @Test
+    @Transactional
     public void read() {
-        Optional<User> user = repository.findById(2L);
+        Optional<User> user = repository.findById(1L);
 
         user.ifPresent(selectUser -> {
-            System.out.println("User: " + selectUser);
+
+            selectUser.getOrderDetailList().forEach(orderDetail ->
+                    {
+                        Item item = orderDetail.getItem();
+                        System.out.println(item);
+                    }
+            );
+
         });
 
-        assertThat(user.get().getAccount()).isEqualTo("test");
+//        assertThat(user.get().getAccount()).isEqualTo("test");
     }
 
     @Test
@@ -48,11 +56,11 @@ public class UserRepositoryTests {
         Optional<User> user = repository.findById(2L);
 
         user.ifPresent(selectUser -> {
-           selectUser.setAccount("aaaa");
-           selectUser.setUpdatedAt(LocalDateTime.now());
-           selectUser.setUpdatedBy("update method()");
+            selectUser.setAccount("aaaa");
+            selectUser.setUpdatedAt(LocalDateTime.now());
+            selectUser.setUpdatedBy("update method()");
 
-           repository.save(selectUser);
+            repository.save(selectUser);
         });
     }
 }
