@@ -1,9 +1,9 @@
 package com.skc.adminweb.repository;
 
-import com.skc.adminweb.model.entity.User;
+import com.skc.adminweb.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 }
