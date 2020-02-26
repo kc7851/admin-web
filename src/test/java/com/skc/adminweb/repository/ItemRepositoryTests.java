@@ -21,21 +21,13 @@ public class ItemRepositoryTests {
 
     @Test
     public void create() {
-        Item item = new Item();
-        item.setName("맥북");
-        item.setPrice(3000000);
-        item.setContents("16인치 뉴 맥북");
 
-        Item newItem = itemRepository.save(item);
-        Assert.assertNotNull(newItem);
+
     }
 
     @Test
     public void read() {
-        Long id = 1L;
 
-        Optional<Item> item = itemRepository.findById(id);
 
-        Assert.assertTrue(item.isPresent());
     }
 }
