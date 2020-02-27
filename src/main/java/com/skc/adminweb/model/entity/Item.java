@@ -3,6 +3,7 @@ package com.skc.adminweb.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = {"partner", "orderDetailList"})
 public class Item {
 
     @Id
@@ -42,6 +44,10 @@ public class Item {
 
     private String updatedBy;
 
-    private Long partnerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Partner partner;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<OrderDetail> orderDetailList;
 
 }
