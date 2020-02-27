@@ -25,7 +25,7 @@ public class OrderGroup {
 
     private String orderType;
 
-    private String redAddress;
+    private String revAddress;
 
     private String revName;
 
@@ -46,5 +46,7 @@ public class OrderGroup {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
+
+    private Long userId;
 
 }
