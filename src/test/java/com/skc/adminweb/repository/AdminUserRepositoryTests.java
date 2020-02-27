@@ -22,12 +22,12 @@ public class AdminUserRepositoryTests {
     @Test
     public void create() {
         AdminUser adminUser = new AdminUser();
-        adminUser.setAccount("AdminUser01");
-        adminUser.setPassword("AdminUser01");
+        adminUser.setAccount("AdminUser02");
+        adminUser.setPassword("AdminUser02");
         adminUser.setStatus("REGISTERED");
         adminUser.setRole("SUPER");
-        adminUser.setCreatedAt(LocalDateTime.now());
-        adminUser.setCreatedBy("AdminServer");
+//        adminUser.setCreatedAt(LocalDateTime.now());
+//        adminUser.setCreatedBy("AdminServer");
 
         AdminUser newAdminUser = adminUserRepository.save(adminUser);
 
