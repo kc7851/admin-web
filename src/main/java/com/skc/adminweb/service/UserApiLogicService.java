@@ -71,7 +71,14 @@ public class UserApiLogicService implements CurdInterface<UserApiRequest, UserAp
 
     @Override
     public Header delete(Long id) {
-        return null;
+        Optional<User> getUser = userRepository.findById(id);
+
+        return getUser.map(user -> {
+            userRepository.delete(user);
+
+            return Header.OK();
+        })
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     private Header<UserApiResponse> response(User user) {

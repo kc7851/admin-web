@@ -45,8 +45,9 @@ public class UserApiController implements CurdInterface<UserApiRequest, UserApiR
 
     @Override
     @DeleteMapping("{id}")
-    public Header delete(Long id) {
-        return null;
+    public Header delete(@PathVariable Long id) {
+        log.info("read id : {}", id);
+        return userApiLogicService.delete(id);
     }
 
 }
