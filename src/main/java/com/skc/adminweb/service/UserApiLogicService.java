@@ -48,7 +48,25 @@ public class UserApiLogicService implements CurdInterface<UserApiRequest, UserAp
 
     @Override
     public Header<UserApiResponse> update(Header<UserApiRequest> request) {
-        return null;
+
+        UserApiRequest userApiRequest = request.getData();
+
+        Optional<User> getUser = userRepository.findById(userApiRequest.getId());
+
+        return getUser.map(user -> {
+            user.setAccount(userApiRequest.getAccount())
+                    .setPassword(userApiRequest.getPassword())
+                    .setPhoneNumber(userApiRequest.getPhoneNumber())
+                    .setEmail(userApiRequest.getEmail())
+                    .setStatus(userApiRequest.getStatus())
+                    .setRegisteredAt(userApiRequest.getRegisteredAt())
+                    .setUnregisteredAt(userApiRequest.getUnregisteredAt());
+
+            return user;
+        })
+                .map(user -> userRepository.save(user))
+                .map(user -> response(user))
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override

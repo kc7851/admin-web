@@ -37,9 +37,10 @@ public class UserApiController implements CurdInterface<UserApiRequest, UserApiR
     @Override
     @PutMapping("")
     public Header<UserApiResponse> update(
-            @RequestBody Header<UserApiRequest> userApiRequest
+            @RequestBody Header<UserApiRequest> request
     ) {
-        return null;
+        log.info("{}", request);
+        return userApiLogicService.update(request);
     }
 
     @Override
