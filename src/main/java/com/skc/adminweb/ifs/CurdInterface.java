@@ -2,13 +2,13 @@ package com.skc.adminweb.ifs;
 
 import com.skc.adminweb.model.network.Header;
 
-public interface CurdInterface {
+public interface CurdInterface<Req, Res> {
 
-    Header create();
+    Header<Res> create(Header<Req> request);
 
-    Header read(Long id);
+    Header<Res> read(Long id);
 
-    Header update();
+    Header<Res> update(Header<Req> request);
 
     Header delete(Long id);
 
