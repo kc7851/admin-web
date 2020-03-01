@@ -1,5 +1,6 @@
 package com.skc.adminweb.controller.api;
 
+import com.oracle.tools.packager.Log;
 import com.skc.adminweb.ifs.CurdInterface;
 import com.skc.adminweb.model.network.Header;
 import com.skc.adminweb.model.network.reponse.UserApiResponse;
@@ -28,8 +29,9 @@ public class UserApiController implements CurdInterface<UserApiRequest, UserApiR
 
     @Override
     @GetMapping("{id}")
-    public Header<UserApiResponse> read(Long id) {
-        return null;
+    public Header<UserApiResponse> read(@PathVariable(name = "id") Long id) {
+        log.info("read id : {}", id);
+        return userApiLogicService.read(id);
     }
 
     @Override

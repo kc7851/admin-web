@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class UserApiLogicService implements CurdInterface<UserApiRequest, UserApiResponse> {
@@ -38,7 +39,11 @@ public class UserApiLogicService implements CurdInterface<UserApiRequest, UserAp
 
     @Override
     public Header<UserApiResponse> read(Long id) {
-        return null;
+
+        Optional<User> getUser = userRepository.findById(id);
+
+        return getUser.map(user -> response(user))
+                .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
     @Override
